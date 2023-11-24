@@ -7,7 +7,7 @@ const TransactionSchema = new Schema(
       required: true,
     },
 
-    trasactionType: {
+    transactionType: {
       type: String,
       enum: ["credit", "debit"],
       required: true,
