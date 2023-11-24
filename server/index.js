@@ -44,7 +44,25 @@ app.post("/api/transactions", async (req, res) => {
   }
 });
 
-//health api foe testing
+//get - /api/transactions
+app.get("/api/transactions", async (req, res) => {
+    try {
+      const allTransactions = await Transaction.find({});
+  
+      res.json({
+        success: true,
+        data: allTransactions,
+        message: "All Transactions Fetched Successfully.",
+      });
+    } catch (err) {
+      res.json({
+        success: false,
+        message: err.message,
+      });
+    }
+  });
+
+//health api for testing
 app.get("/api/health", async (req, res) => {
   res.send("Server is running");
 });
