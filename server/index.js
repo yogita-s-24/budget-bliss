@@ -6,6 +6,7 @@ dotenv.config();
 
 import Transaction from "./models/Transaction.js";
 import {getApiHealth} from './controllers/health.js'
+import { postApiTransaction, getApiTransaction } from "./controllers/transaction.js";
 
 const app = express();
 app.use(express.json());
@@ -19,49 +20,10 @@ if (connection) {
 }
 connection();
 
-app.post("/api/transactions", async (req, res) => {
-  const { amount, transactionType, category, description } = req.body;
-
-  const transaction = new Transaction({
-    amount,
-    transactionType,
-    category: category || "other",
-    description,
-  });
-
-  try {
-    const saveTransactionData = await transaction.save();
-
-    res.json({
-      success: true,
-      data: saveTransactionData,
-      message: "Transaction Save Successfully.",
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: err.message,
-    });
-  }
-});
+app.post("/api/transactions",postApiTransaction);
 
 //get - /api/transactions
-app.get("/api/transactions", async (req, res) => {
-    try {
-      const allTransactions = await Transaction.find({});
-  
-      res.json({
-        success: true,
-        data: allTransactions,
-        message: "All Transactions Fetched Successfully.",
-      });
-    } catch (err) {
-      res.json({
-        success: false,
-        message: err.message,
-      });
-    }
-  });
+app.get("/api/transactions",getApiTransaction);
 
 //health api for testing
 app.get("/api/health", getApiHealth);
