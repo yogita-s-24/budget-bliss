@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-import Transaction from "./models/Transaction.js";
 import {getApiHealth} from './controllers/health.js'
 import { postApiTransaction, getApiTransaction } from "./controllers/transaction.js";
 
