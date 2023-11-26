@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
-import express, { json } from "express";
+import express from "express";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 import Transaction from "./models/Transaction.js";
+import {getApiHealth} from './controllers/health.js'
 
 const app = express();
 app.use(express.json());
@@ -63,9 +64,7 @@ app.get("/api/transactions", async (req, res) => {
   });
 
 //health api for testing
-app.get("/api/health", async (req, res) => {
-  res.send("Server is running");
-});
+app.get("/api/health", getApiHealth);
 
 const PORT = process.env.PORT || 5000;
 
