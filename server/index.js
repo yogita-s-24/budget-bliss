@@ -6,7 +6,7 @@ dotenv.config();
 
 import {getApiHealth} from './controllers/health.js'
 import { postApiTransaction, getApiTransaction } from "./controllers/transaction.js";
-import { postApiSignups } from "./controllers/user.js";
+import { postApiSignups, getApiSignups} from "./controllers/user.js";
 
 const app = express();
 app.use(express.json());
@@ -21,6 +21,8 @@ const connection = async () => {
 connection();
 
 app.post('/api/signups', postApiSignups);
+
+app.get('/api/signups/:id', getApiSignups);
 
 app.post("/api/transactions",postApiTransaction);
 

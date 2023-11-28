@@ -27,4 +27,16 @@ const postApiSignups = async (req, res) => {
   }
 };
 
-export { postApiSignups };
+const getApiSignups = async(req,res)=>{
+    const {id} = req.params;
+  
+    const fetchUser = await User.findOne({_id : id});
+    return responder({
+        res,
+        success:true,
+        data:fetchUser,
+        message:"Fetch user details by Id."
+    })
+  }
+
+export { postApiSignups,getApiSignups };
