@@ -6,18 +6,21 @@ dotenv.config();
 
 import {getApiHealth} from './controllers/health.js'
 import { postApiTransaction, getApiTransaction } from "./controllers/transaction.js";
+import { postApiSignups } from "./controllers/user.js";
 
 const app = express();
 app.use(express.json());
 
 const connection = async () => {
   await mongoose.connect(process.env.MONGO_URI);
+  
+  if (connection) {
+    console.log("MongoBD Connected Successfully");
+  }
 };
-
-if (connection) {
-  console.log("MongoBD Connected Successfully");
-}
 connection();
+
+app.post('/api/signups', postApiSignups);
 
 app.post("/api/transactions",postApiTransaction);
 
