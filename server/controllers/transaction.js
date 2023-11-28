@@ -64,4 +64,29 @@ const getApiTransaction = async (req, res) => {
   }
 };
 
-export {postApiV1Transaction, postApiV2Transaction, getApiTransaction };
+const getApiTransactionByUserId = async(req,res)=>{
+  const {id} = req.params;
+  try{
+    const findUserData = await Transaction.find({user : id}).populate("user");
+    
+     findUserData.forEach((transaction)=>{
+      transaction.user.password = undefined;
+     });
+
+    return responder({
+      res,
+      success:true,
+      data:findUserData,
+      message:"Successfuly fetched transactions by User Id"
+    })
+
+}catch(err){
+  return responder({
+    res,
+    success:false,
+    message:err.message
+  })
+}
+};
+
+export {postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId};
