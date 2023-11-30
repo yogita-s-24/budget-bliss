@@ -11,8 +11,8 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="bg-gray-100 p-4">
-        <div className="container mx-auto flex justify-between items-center">
+      <nav className="bg-white shadow p-4">
+        <div className="container mx-auto flex justify-between items-center ">
 
           {/* Logo */}
           <div className="text-black hover:text-violet-600 text-xl font-bold flex-grow">Budget Bliss</div>
@@ -53,9 +53,11 @@ const Navbar = () => {
         <ul className="list-none p-0 m-0">
           <li><Link to="/" className="block py-2 hover:text-violet-600">Home</Link></li>
           <li><Link to="/about" className="block py-2 hover:text-violet-600">About</Link></li>
-          <li><Link to="/singup" className="block py-2 hover:text-violet-600">Signup</Link></li>
+          <li><Link to="/addtransaction" className="block py-2 hover:text-violet-600">Add Transaction</Link></li>
+          <li><Link to="/showtransaction" className="block py-2 hover:text-violet-600">Show Transaction</Link></li>
+          <li><Link to="/signup" className="block py-2 hover:text-violet-600">Signup</Link></li>
           <li><Link to="/login" className="block py-2 hover:text-violet-600">Login</Link></li>
-          <Link to="/login" className="text-black hover:text-violet-600">User</Link>
+          <Link to="" className="text-black hover:text-violet-600">User</Link>
           
         </ul>
       
