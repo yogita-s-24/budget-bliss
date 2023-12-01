@@ -1,14 +1,44 @@
-import React, {useState}from 'react'
+import React, {useEffect, useState}from 'react'
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar'
 import './AddTransaction.css'
 
 function AddTransaction() {
-
   const [amount, setAmount] = useState('');
   const [transactionType, setTransaction] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+
+
+  const addTransaction = async() =>{
+
+    if (!amount) {
+      showToast("Amount is required", "alert", 4000);
+      return;
+    }
+    if (!transactionType) {
+      showToast("Transaction Type is required", "alert", 4000);
+      return;
+    }
+
+    const user = JSON.parse(localStorage.getItem('user' || "{}"));
+
+    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/v2/transactions`,{
+      user : user._id,
+      amount,
+      transactionType,
+      category,
+      description
+    })
+    alert("Your transactions added successfully.")
+    console.log(response?.data);
+  if(response?.data?.data){
+    window.location.href='/showtransaction'
+  }
+    
+
+  }
+
 
   return (
     <div>
@@ -27,7 +57,7 @@ function AddTransaction() {
             setAmount(e.target.value);
           }}
 
-          placeholder="Amount"
+          placeholder="Amount (₹)"
           className="w-full p-2 border rounded"
         />
         {
@@ -107,7 +137,7 @@ function AddTransaction() {
         <button 
         type="button" 
         className="form-add"
-      
+        onClick={addTransaction}
         >
           Add Transaction
         </button>
