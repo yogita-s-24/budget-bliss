@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Signup.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ function Signup() {
       alert('You are already Logged In');
       window.location.href = '/';
     }
-  }, []);
+  }, []); 
 
   // api reqest
   async function signUpUser() {
@@ -65,6 +65,7 @@ function Signup() {
       setContact("");
       setPassword("");
       setAddress("");
+      setBank("");
     }
   }
 
