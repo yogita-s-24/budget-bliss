@@ -21,7 +21,7 @@ const postApiV1Transaction = async (req, res) => {
       message: "Transaction save Successfully.",
     });
   } catch (err) {
-    return responder({ success: false, message: err.message });
+    return responder({res, success: false, message: err.message });
   }
 };
 const postApiV2Transaction = async (req, res) => {
