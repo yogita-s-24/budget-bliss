@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
@@ -34,7 +34,13 @@ function Login() {
     }
   };
 
-
+  useEffect(() => {
+    const storageUser = JSON.parse(localStorage.getItem('user') || '{}');
+    if (storageUser?.email) {
+      alert('You are already Logged In');
+      window.location.href = '/showtransaction';
+    }
+  }, []);
 
   return (
     <div>
