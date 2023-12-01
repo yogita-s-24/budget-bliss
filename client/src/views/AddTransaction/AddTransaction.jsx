@@ -10,6 +10,14 @@ function AddTransaction() {
   const [description, setDescription] = useState('');
 
 
+  useEffect(() => {
+    const storageUser = JSON.parse(localStorage.getItem('user' || '{}'));
+    if (!storageUser) {
+      alert('Before you proceed, log in is required 🤪');
+      window.location.href = '/login';
+    }
+  }, []); 
+
   const addTransaction = async() =>{
 
     if (!amount) {
