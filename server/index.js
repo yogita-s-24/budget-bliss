@@ -13,6 +13,18 @@ import { postApiSignups, getApiSignups, postApiLogins, } from "./controllers/use
 const app = express();
 app.use(express.json());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, Content-type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  next();
+});
+
 const connection = async () => {
   await mongoose.connect(process.env.MONGO_URI);
   
@@ -23,22 +35,22 @@ const connection = async () => {
 connection();
 
 //post API - /api/signups
-app.post('/api/signups', postApiSignups);
+app.post('/api/v1/signups', postApiSignups);
 //get API - /api/signups/:id
-app.get('/api/signups/:id', getApiSignups);
+app.get('/api/v1/signups/:id', getApiSignups);
 
 //post API - /api/logins
-app.post("/api/logins", postApiLogins);
+app.post("/api/v1/logins", postApiLogins);
 
 app.post("/api/v1/transactions",postApiV1Transaction);//post API - /api/v1/transactions
 app.post("/api/v2/transactions",postApiV2Transaction); //post API - /api/v1/transactions
 
 //get - /api/transactions
-app.get("/api/transactions",getApiTransaction);
-app.get("/api/transaction/user/:id", getApiTransactionByUserId);
+app.get("/api/v1/transactions",getApiTransaction);
+app.get("/api/v1/transaction/user/:id", getApiTransactionByUserId);
 
 //health api for testing
-app.get("/api/health", getApiHealth);
+app.get("/api/v1/health", getApiHealth);
 
 const PORT = process.env.PORT || 5000;
 
