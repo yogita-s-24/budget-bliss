@@ -1,17 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Signup.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import showToast from 'crunchy-toast'
+import axios from "axios";
 
 function Signup() {
   const [name, setName] = useState('');
   const[email, setEmail] = useState('');
   const[contact, setContact] = useState('');
-  const[address, setAdress] = useState('');
+  const[address, setAddress] = useState('');
   const[password, setPassword] = useState('');
-  const[bank, setBank] = useState("");
+  const[bank, setBank] = useState("other");
 
-  const[] = useState('');
+  useEffect(() => {
+    const storageUser = JSON.parse(localStorage.getItem('user') || '{}');
+    if (storageUser?.email) {
+      alert('You are already Logged In');
+      window.location.href = '/';
+    }
+  }, []);
+
+  // api reqest
+  async function signUpUser() {
+    if (!name) {
+      showToast("name is required", "alert", 4000);
+      return;
+    }
+    if (!email) {
+      showToast("Email is required", "alert", 4000);
+      return;
+    }
+    if (!contact) {
+      showToast("Contact number is required", "alert", 4000);
+      return;
+    }
+    if (!password) {
+      showToast("Password is required", "alert", 4000);
+      return;
+    }
+    if (!address) {
+      showToast("Address is required", "alert", 4000);
+      return;
+    }
+  
+    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/v1/signups`, {
+      userName : name,
+      email : email,
+      password : password,
+      contactNumber : contact,
+      address : address,
+      bankName : bank
+    });
+
+    console.log(response.data);
+    if (response.data.success) {
+      showToast(response.data.message, "success", 3000);
+      window.location.href = "/login";
+    } else {
+      showToast(response.data.message, "alert", 3000);
+
+      setName("");
+      setEmail("");
+      setContact("");
+      setPassword("");
+      setAddress("");
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -50,7 +106,7 @@ function Signup() {
           placeholder="Address"
           className="form--input"
           value={address}
-          onChange={(e) => setAdress(e.target.value)}
+          onChange={(e) => setAddress(e.target.value)}
         />
 
         <input 
@@ -92,7 +148,7 @@ function Signup() {
             </b>
           </label>
         </div>
-        <button type="button" className="form--submit">Sign up</button>
+        <button type="button" className="form--submit" onClick={signUpUser}>Sign up</button>
       </form>
     </div>
   );
