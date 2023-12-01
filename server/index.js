@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import {getApiHealth} from './controllers/health.js'
-import { postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId, deleteApiTransactionById } from "./controllers/transaction.js";
+import { postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId, deleteApiTransactionById, putApiTransactionsById } from "./controllers/transaction.js";
 import { postApiSignups, getApiSignups, postApiLogins, } from "./controllers/user.js";
 
 
@@ -52,6 +52,9 @@ app.get("/api/v1/transaction/user/:id", getApiTransactionByUserId);
 
 //delete - /api/trasactions
 app.delete("/api/v1/transactions/:id", deleteApiTransactionById);
+
+//put - /api/trasactions/:id
+app.put("/api/v1/transactions/:id", putApiTransactionsById);
 
 //health api for testing
 app.get("/api/v1/health", getApiHealth);

@@ -110,4 +110,36 @@ const deleteApiTransactionById = async (req, res) => {
   }
 };
 
-export {postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId, deleteApiTransactionById};
+//put 
+const putApiTransactionsById = async (req, res) =>{
+  const { id } = req.params;
+  const {amount, transactionType, category, description } = req.body;
+
+  await Transaction.updateOne({_id:id},{$set:{
+    amount,
+    transactionType,
+    category,
+    description
+  }})
+  try{
+    const updateTransaction = await Transaction.findOne({_id : id});
+    return responder({
+      res,
+      success:true,
+      data:updateTransaction,
+      message:"Transaction updated Successfully"
+    });
+
+  }catch(err){
+    return responder({
+      res,
+      success:false,
+      message:err.message
+      })
+  }
+}
+
+
+
+
+export {postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId, deleteApiTransactionById, putApiTransactionsById};
