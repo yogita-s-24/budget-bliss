@@ -89,4 +89,25 @@ const getApiTransactionByUserId = async(req,res)=>{
 }
 };
 
-export {postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId};
+//delete
+const deleteApiTransactionById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Transaction.deleteOne({ _id : id });
+    return responder({
+      res,
+      success: true,
+      message: "Transaction deleted successfully",
+    });
+
+  } catch (err) {
+   return responder ({
+      res,
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+export {postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId, deleteApiTransactionById};
