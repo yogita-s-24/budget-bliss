@@ -23,7 +23,7 @@ const postApiSignups = async (req, res) => {
       message: "User data save Successfully.",
     });
   } catch (err) {
-    return responder({ success: false, message: err.message });
+    return responder({res, success: false, message: err.message });
   }
 };
 
