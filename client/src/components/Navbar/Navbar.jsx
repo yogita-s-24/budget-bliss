@@ -56,8 +56,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className=" hidden md:flex align-start text-black hover:text-violet-600 cursor-pointer">
-            Hello, {user?.userName || "User"}! {user?.userName ? (
+          <div className="hidden md:flex align-start text-black hover:text-violet-600 cursor-pointer font-semibold">
+          Welcome back, {user?.userName || "User"}! {user?.userName ? (
               <span
                 className="text-black hover:text-violet-600 cursor-pointer"
                 onClick={() => {
@@ -134,8 +134,8 @@ const Navbar = () => {
           </li>
 
 
-          <div>
-            Hello, {user?.userName || " User "} !
+          <div className="font-semibold">
+            Welcome back, {user?.userName || " User "} !
             {user?.userName ? (
               <span
                 className="text-black hover:text-violet-600 cursor-pointer"
