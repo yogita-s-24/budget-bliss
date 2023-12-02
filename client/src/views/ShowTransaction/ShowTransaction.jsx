@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
+import editImg from "./edit.png";
+import deleteImg from "./delete.png";
 
 function ShowTransaction() {
   const [userName, setUserName] = useState({});
@@ -80,9 +82,15 @@ function ShowTransaction() {
       <div
         className="text-center mt-2 border w-52 mx-auto bg-white rounded-md py-2 px-4"
         style={{ boxShadow: "2px 2px 5px rgba(0,0,0,0.2)" }}>
-        <h2 className="font-bold"><span className="text-violet-700">Credit Sum : </span> <span className="text-green-500">{creditSum}</span> </h2>
+        <h2 className="font-bold">
+          <span className="text-violet-700">Credit Sum : </span>{" "}
+          <span className="text-green-500">{creditSum}</span>{" "}
+        </h2>
         <div className="border-b border border-black-900"></div>
-        <h2 className="font-bold"><span className="text-violet-700">Debit Sum : </span> <span className="text-red-500">- {debitSum} </span></h2>
+        <h2 className="font-bold">
+          <span className="text-violet-700">Debit Sum : </span>{" "}
+          <span className="text-red-500">- {debitSum} </span>
+        </h2>
       </div>
 
       {myTransactions?.map((transaction, index) => {
@@ -133,6 +141,20 @@ function ShowTransaction() {
               <div>
                 <p>{description}</p>
               </div>
+
+              {/* Delete Image */}
+              <img
+                src={deleteImg}
+                alt="delete"
+                className="h-7 absolute right-2 bottom-2 cursor-pointer b-border border-violet-800 border-2 p-1 rounded-md shadow-sm"
+              />
+
+              {/* Edit Image */}
+              <img
+                src={editImg}
+                alt="edit"
+                className="h-7 absolute right-10 bottom-2 cursor-pointer b-border border-violet-800 p-1 rounded-md border-2 shadow-sm"
+              />
             </div>
           </div>
         );
