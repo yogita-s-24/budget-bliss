@@ -74,13 +74,15 @@ function ShowTransaction() {
   return (
     <div>
       <Navbar />
-      <h1 className="text-center text-4xl font-extrabold my-5 font-mono">
+      <h1 className="text-center text-4xl font-extrabold my-5 font-mono text-black-900">
         All Transactions
       </h1>
-      <div className="text-center mt-2 border w-52 mx-auto bg-white rounded-md py-2 px-4" style={{ boxShadow: "2px 2px 5px rgba(0,0,0,0.2)" }}>
-        <h2 className="font-bold">Credit Sum : {creditSum} </h2>
+      <div
+        className="text-center mt-2 border w-52 mx-auto bg-white rounded-md py-2 px-4"
+        style={{ boxShadow: "2px 2px 5px rgba(0,0,0,0.2)" }}>
+        <h2 className="font-bold"><span className="text-violet-700">Credit Sum : </span> <span className="text-green-500">{creditSum}</span> </h2>
         <div className="border-b border border-black-900"></div>
-        <h2 className="font-bold">Debit Sum : {debitSum} </h2>
+        <h2 className="font-bold"><span className="text-violet-700">Debit Sum : </span> <span className="text-red-500">- {debitSum} </span></h2>
       </div>
 
       {myTransactions?.map((transaction, index) => {
@@ -98,12 +100,12 @@ function ShowTransaction() {
         const time = new Date(createdAt).toLocaleTimeString();
 
         return (
-          <div key={index}>
+          <div key={index} className="p-3">
             <div
-              className="border w-4/6 mx-auto mt-6 p-5 px-5 bg-white rounded-md relative"
+              className="border lg:w-4/6 sm:w-96 mx-auto p-5 px-5 bg-white rounded-md relative"
               style={{ boxShadow: "2px 2px 5px rgba(0,0,0,0.2)" }}>
               <div
-                className={`font-extrabold font-mono ${
+                className={`font-extrabold font-mono lg:text-base sm:text-sm, mt-4  ${
                   transactionType === "debit"
                     ? "text-red-500"
                     : "text-green-500"
