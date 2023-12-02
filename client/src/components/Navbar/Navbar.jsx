@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LoginImg from './switch.png';
+import LoginImg from "./switch.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,10 +23,11 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
+      <div className="sticky top-0 z-50">
       <nav className="bg-white shadow p-4">
         <div className="container mx-auto flex justify-between items-center ">
           {/* Logo */}
-          <div className="text-black hover:text-violet-600 text-xl font-bold flex-grow">
+          <div className="text-black hover:text-violet-600 text-xl font-bold flex-grow font-mono cursor-pointer">
             Budget Bliss
           </div>
 
@@ -57,7 +58,8 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex align-start text-black hover:text-violet-600 cursor-pointer font-semibold">
-          Welcome back, {user?.userName || "User"}! {user?.userName ? (
+            {user?.userName ? "Welcome back," : ""} {user?.userName || "Hello User"}!{" "}
+            {user?.userName ? (
               <span
                 className="text-black hover:text-violet-600 cursor-pointer"
                 onClick={() => {
@@ -65,7 +67,11 @@ const Navbar = () => {
                   window.location.href = "/login";
                 }}>
                 {" "}
-                <img src={LoginImg} alt="login-img" style={{height:"28px", marginLeft:"10px"}}/>
+                <img
+                  src={LoginImg}
+                  alt="login-img"
+                  style={{ height: "28px", marginLeft: "10px" }}
+                />
               </span>
             ) : null}
           </div>
@@ -91,6 +97,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      </div>
 
       {/* Mobile Navbar (hidden by default) */}
       <div
@@ -133,9 +140,9 @@ const Navbar = () => {
             </Link>
           </li>
 
-
           <div className="font-semibold">
-            Welcome back, {user?.userName || " User "} !
+            {user?.userName ? "Welcome back," : ""} {user?.userName || "Hello User "}{" "}
+            !
             {user?.userName ? (
               <span
                 className="text-black hover:text-violet-600 cursor-pointer"
@@ -144,11 +151,14 @@ const Navbar = () => {
                   window.location.href = "/login";
                 }}>
                 {" "}
-                <img src={LoginImg} alt="login-img" style={{height:"28px", marginLeft:"10px"}}/>
+                <img
+                  src={LoginImg}
+                  alt="login-img"
+                  style={{ height: "28px", marginLeft: "10px" }}
+                />
               </span>
             ) : null}
           </div>
-          
         </ul>
       </div>
     </>
