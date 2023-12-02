@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
-import editImg from "./edit.png";
-import deleteImg from "./delete.png";
+import editImg from "./edits.png";
+import deleteImg from "./deletes.png";
 
 function ShowTransaction() {
   const [userName, setUserName] = useState({});
