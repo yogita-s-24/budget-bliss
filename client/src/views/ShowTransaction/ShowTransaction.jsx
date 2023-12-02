@@ -5,6 +5,11 @@ import axios from "axios";
 function ShowTransaction() {
   const [userName, setUserName] = useState({});
   const [myTransactions, setMyTransactions] = useState([]);
+  const [creditSum, setCreditSum] = useState("");
+  const [debitSum, setDebitSum] = useState("");
+
+  let totalCredit = 0;
+  let totalDebit = 0;
 
   const CATEGORY_EMOJI_MAP = {
     food: "Food 🍽️",
@@ -31,9 +36,21 @@ function ShowTransaction() {
       }`
     );
 
-    console.log(response?.data?.data);
+    const transactionData = response?.data?.data;
+    // console.log(transactionData);
 
-    setMyTransactions(response?.data?.data);
+    transactionData.forEach((transaction) => {
+      if (transaction.transactionType === "credit") {
+        totalCredit += transaction.amount;
+      } else {
+        totalDebit += transaction.amount;
+      }
+    });
+
+    setCreditSum(totalCredit);
+    setDebitSum(totalDebit);
+
+    setMyTransactions(transactionData);
   };
 
   useEffect(
@@ -57,9 +74,15 @@ function ShowTransaction() {
   return (
     <div>
       <Navbar />
-      <h1 className="text-center text-4xl font-extrabold mt-4 font-mono">
+      <h1 className="text-center text-4xl font-extrabold my-5 font-mono">
         All Transactions
       </h1>
+      <div className="text-center mt-2 border w-52 mx-auto bg-white rounded-md py-2 px-4" style={{ boxShadow: "2px 2px 5px rgba(0,0,0,0.2)" }}>
+        <h2 className="font-bold">Credit Sum : {creditSum} </h2>
+        <div className="border-b border border-black-900"></div>
+        <h2 className="font-bold">Debit Sum : {debitSum} </h2>
+      </div>
+
       {myTransactions?.map((transaction, index) => {
         const {
           _id,
