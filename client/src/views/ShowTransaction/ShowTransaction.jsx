@@ -7,17 +7,16 @@ function ShowTransaction() {
   const [myTransactions, setMyTransactions] = useState([]);
 
   const CATEGORY_EMOJI_MAP = {
-    "food" : "Food 🍽️",
-    "education" : "Education 📚",
-    "entertainment" : "Entertainment 🎥",
-    "travel" : "Travel ✈️",
-    "shopping" : "Shopping 🛍️",
-    "freelancing" : "Freelancing 👩🏻‍💻",
-    "gift" : "Gift 🎁",
-    "salary" : "Salary 💰",
-    "other" : "🤷‍♀️",
-    
-  }
+    food: "Food 🍽️",
+    education: "Education 📚",
+    entertainment: "Entertainment 🎥",
+    travel: "Travel ✈️",
+    shopping: "Shopping 🛍️",
+    freelancing: "Freelancing 👩🏻‍💻",
+    gift: "Gift 🎁",
+    salary: "Salary 💰",
+    other: "🤷‍♀️",
+  };
 
   const loadTransactionData = async () => {
     const userID = userName._id;
@@ -78,7 +77,7 @@ function ShowTransaction() {
         return (
           <div key={index}>
             <div
-              className="border w-4/6 mx-auto mt-6 p-2 px-3 bg-white rounded-md relative"
+              className="border w-4/6 mx-auto mt-6 p-5 px-5 bg-white rounded-md relative"
               style={{ boxShadow: "2px 2px 5px rgba(0,0,0,0.2)" }}>
               <div
                 className={`font-extrabold font-mono ${
@@ -102,8 +101,10 @@ function ShowTransaction() {
                 </span>
               </div>
 
-              <p className="leading-5 absolute right-4 top-2">{CATEGORY_EMOJI_MAP[category]}</p>
-
+              <p className="leading-5 absolute right-4 top-2">
+                {CATEGORY_EMOJI_MAP[category]}
+              </p>
+              <div className="border my-2"></div>
               <div>
                 <p>{description}</p>
               </div>
