@@ -40,7 +40,7 @@ function UpdateTransaction() {
     }
   }, []); 
 
-  const addTransaction = async() =>{
+  const updateTransaction = async() =>{
 
     if (!amount) {
       showToast("Amount is required", "alert", 4000);
@@ -50,21 +50,22 @@ function UpdateTransaction() {
       showToast("Transaction Type is required", "alert", 4000);
       return;
     }
+    const updateDetails = {
+      amount: amount,
+      transactionType: transactionType,
+      category: category,
+      description: description,
+    };
 
-    const user = JSON.parse(localStorage.getItem('user' || "{}"));
-
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/v2/transactions`,{
-      user : user._id,
-      amount,
-      transactionType,
-      category,
-      description
-    })
-    alert("Your transactions added successfully.")
-    console.log(response?.data);
-  if(response?.data?.data){
-    window.location.href='/showtransaction'
-  }
+    const response = await axios.put(
+      `${import.meta.env.VITE_SERVER_URL}/api/v1/transactions/${id}`,
+      updateDetails
+    );
+    if (response?.data?.message) {
+      window.location.href= "/showtransaction"
+      alert(response?.data?.message);
+    }
+    
     
 
   }
@@ -167,7 +168,7 @@ function UpdateTransaction() {
         <button 
         type="button" 
         className="form-add"
-        onClick={addTransaction}
+        onClick={updateTransaction}
         >
           Update Transaction
         </button>
