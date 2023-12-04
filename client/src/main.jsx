@@ -10,7 +10,7 @@ import AddTransaction from './views/AddTransaction/AddTransaction.jsx';
 import ShowTransaction from './views/ShowTransaction/ShowTransaction.jsx';
 import Login from './views/Login/Login.jsx'
 import Signup from './views/Signup/Signup.jsx'
-
+import UpdateTransaction from "./views/UpdateTransaction/UpdateTransaction"
 
 const router = createBrowserRouter([
     {
@@ -36,7 +36,11 @@ const router = createBrowserRouter([
     {
         path:"/signup",
         element:<Signup/>
-    }
+    },
+    {
+        path: "/update_translations/:id",
+        element: <UpdateTransaction />,
+      },
 
 ])
 

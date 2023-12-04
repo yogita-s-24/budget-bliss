@@ -160,11 +160,16 @@ function ShowTransaction() {
               />
 
               {/* Edit Image */}
-              <img
-                src={editImg}
-                alt="edit"
-                className="h-7 absolute right-10 bottom-2 cursor-pointer b-border border-violet-800 p-1 rounded-md border-2 shadow-sm"
-              />
+              <a href={`/update_translations/${_id}`} target="blank">
+                <img
+                  src={editImg}
+                  alt="editPng"
+                  className="h-7 absolute right-11 bottom-2 cursor-pointer b-border border-violet-800 border-2 p-1 rounded-md shadow-sm "
+                  onClick={() => {
+                    editTransition(_id);
+                  }}
+                />{" "}
+              </a>
             </div>
           </div>
         );
