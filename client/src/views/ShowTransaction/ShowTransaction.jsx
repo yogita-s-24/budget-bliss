@@ -156,7 +156,7 @@ function ShowTransaction() {
                 src={deleteImg}
                 alt="delete"
                 className="h-7 absolute right-2 bottom-2 cursor-pointer b-border border-violet-800 border-2 p-1 rounded-md shadow-sm"
-                onClick={() => deleteTransition``(_id)}
+                onClick={() => deleteTransition(_id)}
               />
 
               {/* Edit Image */}
