@@ -15,7 +15,7 @@ function Signup() {
   const[bank, setBank] = useState("other");
 
   useEffect(() => {
-    const storageUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const storageUser = JSON.parse(localStorage.getItem('user' || '{}'));
     if (storageUser?.email) {
       swal({
         title: `👋 ${storageUser.userName}`,
@@ -71,7 +71,7 @@ function Signup() {
     } else {
       swal({
         title: "Error",
-        text: message,
+        text: response?.data?.data?.messeage,
         icon: "error",
       });
 
