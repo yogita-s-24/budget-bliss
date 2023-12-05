@@ -88,7 +88,7 @@ function Signup() {
     <div>
       <Navbar />
       <form className="form mx-auto mt-7">
-        <span className="signup">Sign Up  {bank}</span>
+        <span className="signup">Sign Up</span>
 
   
         <h1>Create your own account</h1>

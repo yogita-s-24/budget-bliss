@@ -61,7 +61,7 @@ app.delete("/api/v1/transactions/:id", deleteApiTransactionById);
 app.put("/api/v1/transactions/:id", putApiTransactionsById);
 
 //health api for testing
-app.get("/api/v1/health", getApiHealth);
+app.get("`/api/v1/health`", getApiHealth);
 
 if (process.env.NODE_ENV === 'production') { app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 
