@@ -8,6 +8,9 @@ import {getApiHealth} from './controllers/health.js'
 import { postApiV1Transaction, postApiV2Transaction, getApiTransaction, getApiTransactionByUserId, deleteApiTransactionById, putApiTransactionsById ,getApiv1Transaction} from "./controllers/transaction.js";
 import { postApiSignups, getApiSignups, postApiLogins, } from "./controllers/user.js";
 
+//hosting on on-render
+import path from 'path';
+const __dirname = path.resolve();
 
 
 const app = express();
@@ -60,7 +63,12 @@ app.put("/api/v1/transactions/:id", putApiTransactionsById);
 //health api for testing
 app.get("/api/v1/health", getApiHealth);
 
+if (process.env.NODE_ENV === 'production') { app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
+
+app.get('*', (req, res) => { res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html')) }); }
+
 const PORT = process.env.PORT || 5000;
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
