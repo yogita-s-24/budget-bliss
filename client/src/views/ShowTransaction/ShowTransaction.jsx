@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import editImg from './edits.png';
 import deleteImg from './deletes.png';
+import swal from "sweetalert";
+
 
 function ShowTransaction() {
   const [userName, setUserName] = useState({});
@@ -64,12 +66,17 @@ function ShowTransaction() {
   );
 
   useEffect(() => {
-    const storageUser = JSON.parse(localStorage.getItem("user") || "{}");
+    const storageUser = JSON.parse(localStorage.getItem("user" || "{}"));
     if (storageUser) {
       setUserName(storageUser);
     } else {
-      alert("Before you proceed, Login is required 🤪");
-      window.location.href = "/login";
+      swal({
+        title: `Hey! `,
+        text: "Before you proceed, log in is required 🤪",
+        icon: "warning",
+      }).then(() => {
+        window.location.href = "/login";
+      });
     }
   }, []);
 
@@ -156,7 +163,20 @@ function ShowTransaction() {
                 src={deleteImg}
                 alt="delete"
                 className="h-7 absolute right-2 bottom-2 cursor-pointer b-border border-violet-800 border-2 p-1 rounded-md shadow-sm"
-                onClick={() => deleteTransition(_id)}
+                onClick={() =>  swal({
+                  title: "Are you sure to delete your transaction permanently?",
+                  text: "After deletion, this transaction cannot be recovered.",
+                  icon: "warning",
+                  buttons: true,
+                  successMode: true,
+                }).then((willDelete) => {
+                  if (willDelete) {
+                    deleteTransition(_id);
+                  } else {
+                    swal("Don't worry, your transaction is secure!");
+                  }
+                })
+              }
               />
 
               {/* Edit Image */}
@@ -165,8 +185,21 @@ function ShowTransaction() {
                   src={editImg}
                   alt="editPng"
                   className="h-7 absolute right-11 bottom-2 cursor-pointer b-border border-violet-800 border-2 p-1 rounded-md shadow-sm "
-                  onClick={() => {
-                    editTransition(_id);
+                  onClick={() => { swal({
+                      icon: "info",
+                      title: "Are you sure you want edit transition ?",
+                      buttons: ["Cancel", "Yes"],
+                    }).then((userConfirmed) => {
+                      if (userConfirmed) {
+                        // User clicked "Yes", proceed with edit Transition
+                        window.location.href = `update_translations/${_id}`;
+  
+                        editTransition(_id);
+                      } else {
+                        // User clicked "Cancel"
+                        swal("Ok no ploblem ");
+                      }
+                    });
                   }}
                 />{" "}
               </a>

@@ -3,6 +3,8 @@ import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar'
 import './UpdateTransaction.css'
 import { useParams } from "react-router-dom";
+import swal from "sweetalert";
+
 
 function UpdateTransaction() {
   const [amount, setAmount] = useState('');
@@ -62,12 +64,14 @@ function UpdateTransaction() {
       updateDetails
     );
     if (response?.data?.message) {
-      window.location.href= "/showtransaction"
-      alert(response?.data?.message);
+      swal({
+        title: ` Success`,
+        text: "Your transations have been Updated Successfully.",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "/showtransaction";
+      });
     }
-    
-    
-
   }
 
 

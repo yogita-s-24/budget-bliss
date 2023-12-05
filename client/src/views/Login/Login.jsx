@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import showToast from "crunchy-toast";
+import swal from "sweetalert";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -25,9 +26,14 @@ function Login() {
     console.log(response?.data);
 
     if(response?.data?.success){
-      showToast(response.data.message, "success", 3000);
+      swal({
+        title: `${response?.data?.data.userName}!👋  `,
+        text: "You're Login Successfull!",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "/addtransaction";
+      });
       localStorage.setItem('user', JSON.stringify(response?.data.data));
-      window.location.href = "/addtransaction";
     }
     else{
       showToast(response.data.message, "warning", 5000);
@@ -37,8 +43,14 @@ function Login() {
   useEffect(() => {
     const storageUser = JSON.parse(localStorage.getItem('user') || '{}');
     if (storageUser?.email) {
-      alert('You are already Logged In');
-      window.location.href = '/showtransaction';
+      swal({
+        title: `${storageUser.userName}👋 `,
+        text: "You're already Logged In!😁",
+        icon: "info",
+      }).then(() => {
+        window.location.href = "/showtransaction";
+      });
+
     }
   }, []);
 

@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import showToast from 'crunchy-toast'
 import axios from "axios";
+import swal from "sweetalert";
 
 function Signup() {
   const [name, setName] = useState('');
@@ -16,8 +17,13 @@ function Signup() {
   useEffect(() => {
     const storageUser = JSON.parse(localStorage.getItem('user') || '{}');
     if (storageUser?.email) {
-      alert('You are already Logged In');
-      window.location.href = '/';
+      swal({
+        title: `👋 ${storageUser.userName}`,
+        text: "There is no need to Signup - You're already Logged In!",
+        icon: "info",
+      }).then(() => {
+        window.location.href = "/";
+      });
     }
   }, []); 
 
@@ -55,10 +61,19 @@ function Signup() {
 
     console.log(response.data);
     if (response.data.success) {
-      showToast(response.data.message, "success", 3000);
-      window.location.href = "/login";
+      swal({
+        title: `Hey ${response.data.data.userName} - You're Successfully Signup`,
+        text: "Hello and Welcome here! You're now an important part of our financial journey.🎉",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "/login";
+      });
     } else {
-      showToast(response.data.message, "alert", 3000);
+      swal({
+        title: "Error",
+        text: message,
+        icon: "error",
+      });
 
       setName("");
       setEmail("");

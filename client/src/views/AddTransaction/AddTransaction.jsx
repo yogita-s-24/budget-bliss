@@ -2,6 +2,8 @@ import React, {useEffect, useState}from 'react'
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar'
 import './AddTransaction.css'
+import swal from "sweetalert";
+
 
 function AddTransaction() {
   const [amount, setAmount] = useState('');
@@ -13,8 +15,13 @@ function AddTransaction() {
   useEffect(() => {
     const storageUser = JSON.parse(localStorage.getItem('user' || '{}'));
     if (!storageUser) {
-      alert('Before you proceed, log in is required 🤪');
-      window.location.href = '/login';
+      swal({
+        title: `Hey !`,
+        text: 'Before you proceed, log in is required 🤪',
+        icon: "warning",
+      }).then(() => {
+        window.location.href = "/login";
+      });
     }
   }, []); 
 
@@ -38,13 +45,18 @@ function AddTransaction() {
       category,
       description
     })
-    alert("Your transactions added successfully.")
-    console.log(response?.data);
   if(response?.data?.data){
-    window.location.href='/showtransaction'
+    swal({
+      title: `Good Job `,
+      text: "Your transaction added Successfully!",
+      icon: "success",
+    }).then(() => {
+      window.location.href = "/showtransaction";
+    });  
   }
-    
-
+  else{
+    swal(response?.data?.data);
+  }
   }
 
 
