@@ -27,7 +27,7 @@ const Navbar = () => {
       <nav className="bg-white shadow p-4">
         <div className="container mx-auto flex justify-between items-center ">
           {/* Logo */}
-          <div className="text-black hover:text-violet-600 text-xl font-bold flex-grow font-mono cursor-pointer">
+          <div className="text-violet-700 hover:text-violet-600 text-xl font-bold flex-grow font-mono cursor-pointer">
             Budget Bliss
           </div>
 
