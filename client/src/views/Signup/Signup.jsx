@@ -60,9 +60,9 @@ function Signup() {
     });
 
     console.log(response.data);
-    if (response.data.success) {
+    if (response?.data?.success) {
       swal({
-        title: `Hey ${response.data.data.userName} - You're Successfully Signup`,
+        title: `Hey ${response?.data?.data?.userName} - You're Successfully Signup`,
         text: "Hello and Welcome here! You're now an important part of our financial journey.🎉",
         icon: "success",
       }).then(() => {
@@ -71,7 +71,7 @@ function Signup() {
     } else {
       swal({
         title: "Error",
-        text: response?.data?.data?.messeage,
+        text: "Unothrized user",
         icon: "error",
       });
 
