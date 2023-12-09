@@ -153,7 +153,7 @@ function Signup() {
         </div>
 
         <div className="form--marketing">
-          <label for="okayToEmail" className="checkbox text-sm mt-3">
+          <label htmlFor="okayToEmail" className="checkbox text-sm mt-3">
             If you have an account,{" "}
             <b>
               <Link to="/login">

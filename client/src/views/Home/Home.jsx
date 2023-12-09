@@ -1,8 +1,11 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import './Home.css'
 
 function Home() {
+  useEffect(()=>{
+    document.title="Budget Files"
+  },[])
   return (
     <div className="bg-img">
       <Navbar />
