@@ -103,7 +103,7 @@ const Navbar = () => {
       {/* Mobile Navbar (hidden by default) */}
       <div
         className={`md:hidden ${isMobileMenuOpen ? "" : "hidden"
-          } bg-gray-100 p-4 text-black`}>
+          } bg-gray-100 p-4 text-black `}>
         <ul className="list-none p-0 m-0">
           <li>
             <Link to="/" className="block py-2 hover:text-violet-600">
