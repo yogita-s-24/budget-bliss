@@ -35,7 +35,7 @@ function About() {
             <Link to="https://github.com/yogita-s-24">
               <FaGithubSquare className="text-black-900 text-3xl" />
             </Link>
-            <Link to="yogitashete24@gmail.com">
+            <Link to="mailto:yogitashete24@gmail.com">
               <MdEmail className="text-red-600 text-3xl" />
             </Link>
             <Link to="https://peerlist.io/yogitashete">
