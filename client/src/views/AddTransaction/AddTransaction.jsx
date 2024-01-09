@@ -13,11 +13,12 @@ function AddTransaction() {
 
 
   useEffect(() => {
+    document.title="Budget Bliss - Add Transaction"
     const storageUser = JSON.parse(localStorage.getItem('user' || '{}'));
     if (!storageUser) {
       swal({
         title: `Hey !`,
-        text: 'Before you proceed, log in is required 🤪',
+        text: 'Before you proceed, login is required 🤪',
         icon: "warning",
       }).then(() => {
         window.location.href = "/login";

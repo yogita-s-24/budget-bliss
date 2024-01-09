@@ -14,6 +14,7 @@ const Navbar = () => {
     );
     setUser(getLoggedInUserFromLocalStorage);
     console.log(getLoggedInUserFromLocalStorage);
+
   }, []);
 
   const handleMobileMenuToggle = () => {
@@ -24,86 +25,85 @@ const Navbar = () => {
     <>
       {/* Navbar */}
       <div className="sticky top-0 z-50">
-      <nav className="bg-white shadow p-4">
-        <div className="container mx-auto flex justify-between items-center ">
-          {/* Logo */}
-          <div className="text-violet-700 hover:text-violet-600 text-xl font-bold flex-grow font-mono cursor-pointer">
-            Budget Bliss
-          </div>
+        <nav className="bg-white shadow p-4">
+          <div className="container mx-auto flex justify-between items-center ">
+            {/* Logo */}
+            <div className="text-violet-700 hover:text-violet-600 text-xl font-bold flex-grow font-mono cursor-pointer">
+              Budget Bliss
+            </div>
 
-          {/* Navbar Links */}
-          <div className="hidden md:flex items-center space-x-6 flex-grow">
-            <Link to="/" className="text-black hover:text-violet-600 ">
-              Home
-            </Link>
-            <Link to="/about" className="text-black hover:text-violet-600">
-              About
-            </Link>
-            <Link
-              to="/addtransaction"
-              className="text-black hover:text-violet-600">
-              Add Transaction
-            </Link>
-            <Link
-              to="/showtransaction"
-              className="text-black hover:text-violet-600">
-              Show Transaction
-            </Link>
-            <Link to="/signup" className="text-black hover:text-violet-600">
-              Signup
-            </Link>
-            <Link to="/login" className="text-black hover:text-violet-600">
-              Login
-            </Link>
-          </div>
+            {/* Navbar Links */}
+            <div className="hidden md:flex items-center space-x-6 flex-grow">
+              <Link to="/" className="text-black hover:text-violet-600">
+                Home
+              </Link>
+              <Link to="/about" className="text-black hover:text-violet-600">
+                About
+              </Link>
+              <Link
+                to="/addtransaction"
+                className="text-black hover:text-violet-600">
+                Add Transaction
+              </Link>
+              <Link
+                to="/showtransaction"
+                className="text-black hover:text-violet-600">
+                Show Transaction
+              </Link>
+              <Link to="/signup" className="text-black hover:text-violet-600">
+                Signup
+              </Link>
+              <Link to="/login" className="text-black hover:text-violet-600">
+                Login
+              </Link>
+            </div>
 
-          <div className="hidden md:flex align-start text-black hover:text-violet-600 cursor-pointer font-semibold">
-            {user?.userName ? "Welcome back," : ""} {user?.userName || "Hello User"}!{" "}
-            {user?.userName ? (
-              <span
-                className="text-black hover:text-violet-600 cursor-pointer"
-                onClick={() => {
-                  localStorage.removeItem("user");
-                  window.location.href = "/login";
-                }}>
-                {" "}
-                <img
-                  src={LoginImg}
-                  alt="login-img"
-                  style={{ height: "28px", marginLeft: "10px" }}
-                />
-              </span>
-            ) : null}
-          </div>
+            <div className="hidden md:flex align-start text-black hover:text-violet-600 cursor-pointer font-semibold">
+              {user?.userName ? "Welcome back," : ""} {user?.userName || "Hello User"}!{" "}
+              {user?.userName ? (
+                <span
+                  className="text-black hover:text-violet-600 cursor-pointer"
+                  onClick={() => {
+                    localStorage.removeItem("user");
+                    window.location.href = "/login";
+                  }}>
+                  {" "}
+                  <img
+                    src={LoginImg}
+                    alt="login-img"
+                    style={{ height: "28px", marginLeft: "10px" }}
+                  />
+                </span>
+              ) : null}
+            </div>
 
-          {/* Mobile Navbar Toggle */}
-          <div className="md:hidden">
-            <button
-              onClick={handleMobileMenuToggle}
-              className="text-black hover:text-violet-600">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
-            </button>
+            {/* Mobile Navbar Toggle */}
+            <div className="md:hidden">
+              <button
+                onClick={handleMobileMenuToggle}
+                className="text-black hover:text-violet-600">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
       </div>
 
       {/* Mobile Navbar (hidden by default) */}
       <div
-        className={`md:hidden ${
-          isMobileMenuOpen ? "" : "hidden"
-        } bg-gray-100 p-4 text-black`}>
+        className={`md:hidden ${isMobileMenuOpen ? "" : "hidden"
+          } bg-gray-100 p-4 text-black `}>
         <ul className="list-none p-0 m-0">
           <li>
             <Link to="/" className="block py-2 hover:text-violet-600">
