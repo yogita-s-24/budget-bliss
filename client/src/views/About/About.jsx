@@ -5,6 +5,7 @@ import { ImLinkedin } from "react-icons/im";
 import { FaGithubSquare } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { SiPeerlist } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 function About() {
   useEffect(() => {
@@ -28,10 +29,18 @@ function About() {
             className="h-44 w-44 rounded-full border-2 border-violet-800"
           />
           <p className="flex justify-around mt-5 bg-white p-2 rounded-md shadow-md">
-            <ImLinkedin className="text-blue-900 text-3xl" />
-            <FaGithubSquare className="text-black-900 text-3xl" />
-            <MdEmail className="text-red-600 text-3xl" />
-            <SiPeerlist className="text-green-500 text-3xl" />
+            <Link to="https://www.linkedin.com/in/yogita-shete/">
+              <ImLinkedin className="text-blue-900 text-3xl" />
+            </Link>
+            <Link to="https://github.com/yogita-s-24">
+              <FaGithubSquare className="text-black-900 text-3xl" />
+            </Link>
+            <Link to="yogitashete24@gmail.com">
+              <MdEmail className="text-red-600 text-3xl" />
+            </Link>
+            <Link to="https://peerlist.io/yogitashete">
+              <SiPeerlist className="text-green-500 text-3xl" />
+            </Link>
           </p>
         </div>
         <div className="w-96 bg-white mt-3 rounded-md shadow-md">
